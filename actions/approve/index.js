@@ -17,7 +17,7 @@ let instanceParams = {
   KeyName: id + '-key',
   MinCount: 1,
   MaxCount: 1,
-  SecurityGroupIds: [data.GroupId],
+  SecurityGroupIds: [],
   UserData: parsed[6]
 }
 
