@@ -10,11 +10,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Test
         run: |
-          echo ${{ github.event.client_payload }}
+          echo ${{ github.event.client_payload.github.payload.issue.number }}
       - name: Add comment
         uses: peter-evans/create-or-update-comment@v2
         with:
-          issue-number: ${{ github.event.client_payload.issue.number }} 
+          issue-number: ${{ github.event.client_payload.github.payload.issue.number }} 
           body: |
             Action started.
       - name: Install dependency
@@ -24,6 +24,4 @@ jobs:
       - name: Create Instance
         run: |
           cd actions/approve
-          node . '${{ toJSON(github.event.client_payload.issue.body) }}' ${{ github.event.client_payload.args.named.name }}
-
-      
+          node . '${{ toJSON(github.event.client_payload.github.payload.issue.body) }}' ${{ github.event.client_payload.slash_command.args.named.name }} 
