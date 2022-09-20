@@ -1,8 +1,10 @@
 const AWS = require('aws-sdk')
 const dotenv = require('dotenv')
 
-const json = process.argv[2]
+const body = process.argv[2]
 const id = process.argv[3]
+
+const parsed = body.replace(/\r/g, '').split('\n').filter((v) => v && !v.includes('#'))
 
 const AMI = {
   'Ubuntu': 'ami-058165de3b7202099',
@@ -21,7 +23,6 @@ let instanceParams = {
 
 let instanceId = ''
 
-const parsed = json.replace(/\r/g, '').split('\n').filter((v) => v && !v.includes('#'))
 if (!parsed[7].includes('x')) {
   return console.log('::set-output name=approved::false')
 } else console.log('::set-output name=approved::true')
