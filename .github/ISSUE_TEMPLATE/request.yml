@@ -1,6 +1,6 @@
 name: 서버 신청
 description: 서비스를 배포할 AWS 서버를 신청합니다.
-title: "[신청]: "
+title: "AWS 서버 대여 신청"
 assignees:
   - noeulnight
   - pmh-only
