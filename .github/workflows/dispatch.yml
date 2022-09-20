@@ -13,4 +13,3 @@ jobs:
           commands: |
             approve
             disapprove
-          dispatch-type: workflow
