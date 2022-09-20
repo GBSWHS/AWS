@@ -1,5 +1,5 @@
 const AWS = require('aws-sdk')
-const dotenv = reuqire('dotenv')
+const dotenv = require('dotenv')
 
 const json = process.argv[2]
 const id = process.argv[3]
