@@ -29,7 +29,7 @@ body:
     attributes:
       label: 학번
       description: 학번을 입력해주세요. (4자리)
-      placeholder: "ex. 2214"
+      placeholder: "ex. 2114"
     validations:
       required: true
   - type: input
@@ -76,7 +76,7 @@ body:
     id: check
     attributes:
       label: 이용 동의
-      description: 나는 해당 서버를 대여하면서 불법적이거나 서버에 피해가 갈수있는 서비스는 운영하지 않겠습니다.
+      description: 본인은 해당 서버를 대여하면서 불법적이거나 서버에 피해가 갈수있는 서비스는 운영하지 않겠습니다.
       options:
       - label: 동의
         required: true
