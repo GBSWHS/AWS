@@ -1,6 +1,6 @@
 name: approve
 on:
-  repository_dispatch:
+  workflow_dispatch:
     types: [approve-command]
 jobs:
   approve:
