@@ -8,20 +8,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Test
+      - name: Create .env file
         run: |
-          echo ${{ github.event.client_payload.github.payload.issue.number }}
-      - name: Add comment
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          issue-number: ${{ github.event.client_payload.github.payload.issue.number }} 
-          body: |
-            Action started.
+          cd actions/approve
+          jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" > .env
+        env:
+          SECRETS_CONTEXT: ${{ toJson(secrets) }}
       - name: Install dependency
         run: |
           cd actions/approve
           npm i
       - name: Create Instance
+        id: create
         run: |
           cd actions/approve
-          node . '${{ toJSON(github.event.client_payload.github.payload.issue.body) }}' ${{ github.event.client_payload.slash_command.args.named.name }} 
+          node . '${{ toJSON(github.event.client_payload.github.payload.issue.body) }}' ${{ github.event.client_payload.slash_command.args.named.id }} 
+      - name: Test
+        run: |
+          echo ${{ steps.create.outputs.key }}
+          echo ${{ steps.create.outputs.eip }}
