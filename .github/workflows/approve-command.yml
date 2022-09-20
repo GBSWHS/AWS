@@ -1,9 +1,9 @@
-name: approve-command
+name: approve
 on:
   repository_dispatch:
     types: [approve-command]
 jobs:
-  fixPr:
+  approve:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
